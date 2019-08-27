@@ -1,0 +1,34 @@
+{
+  "name": "infobot-tinkoff-stt",
+  "version": "1.0.0",
+  "description": "Node.JS library for Tinkoff VoiceKit Speech-to-Text with streaming recognition",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/infobot-pro/infobot-tinkoff-stt.git"
+  },
+  "keywords": [
+    "tinkoff",
+    "stt",
+    "speech-to-text",
+    "asr",
+    "speech recognition"
+  ],
+  "author": "Aleksey Kudakov <cto@infobot.pro>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/infobot-pro/infobot-tinkoff-stt/issues"
+  },
+  "homepage": "https://github.com/infobot-pro/infobot-tinkoff-stt#readme",
+  "dependencies": {
+    "crypto": "^1.0.1",
+    "grpc": "^1.23.1",
+    "@grpc/proto-loader": "^0.5.1"
+  }
+}
