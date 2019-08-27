@@ -2,11 +2,9 @@
 Node.JS library for [Tinkoff VoiceKit](https://voicekit.tinkoff.ru/) service.
 Library can work in stream mode or recognize stored audio file.
 
-To work with this library you need to obtain from Yandex Cloud:
+To work with this library you need to obtain from Tinkoff VoiceKit support:
 * API key
 * Secret key
-
-You can obtain them from Tinkoff VoiceKit support.
 
 ## Audio file recognition example:
 ```javascript
