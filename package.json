@@ -27,7 +27,6 @@
   },
   "homepage": "https://github.com/infobot-pro/infobot-tinkoff-stt#readme",
   "dependencies": {
-    "crypto": "^1.0.1",
     "grpc": "^1.23.1",
     "@grpc/proto-loader": "^0.5.1"
   }

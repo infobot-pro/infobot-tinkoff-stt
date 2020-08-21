@@ -1,15 +1,17 @@
+const auth = require('./auth');
+
 const EventEmitter = require('events').EventEmitter;
 const grpc = require('grpc');
 const protoLoader = require('@grpc/proto-loader');
 
-const PROTO_PATH = __dirname + '/stt_service.proto';
+const PROTO_PATH = __dirname + '/stt.proto';
 
 class RecognitionSession {
-    constructor(token, streamingConfig) {
+    constructor(apiKey, secretKey, streamingConfig) {
         const self = this;
         self.events = new EventEmitter;
 
-        let packageDefinition = protoLoader.loadSync(
+        const packageDefinition = protoLoader.loadSync(
             PROTO_PATH,
             {
                 keepCase: true,
@@ -19,13 +21,14 @@ class RecognitionSession {
                 oneofs: true
             });
 
-        let metadata = new grpc.Metadata();
-        metadata.set('authorization', 'Bearer ' + token);
+        const stt_proto = grpc.loadPackageDefinition(packageDefinition).tinkoff.cloud.stt.v1;
+        const channelCredentials = grpc.credentials.createSsl();
+        const callCredentials = grpc.credentials.createFromMetadataGenerator(
+            auth.jwtMetadataGenerator(apiKey, secretKey, "test_issuer", "test_subject"));
+        const creds = grpc.credentials.combineChannelCredentials(channelCredentials, callCredentials);
+        const client = new stt_proto.SpeechToText('stt.tinkoff.ru:443', creds);
 
-        let stt_proto = grpc.loadPackageDefinition(packageDefinition).tinkoff.cloud.stt.v1;
-        let ssl_creds = grpc.credentials.createSsl();
-        let client = new stt_proto.SpeechToText('stt.tinkoff.ru:443', ssl_creds);
-        self._call = client.StreamingRecognize(metadata);
+        self._call = client.StreamingRecognize();
 
         self._call.on('data', function (data) {
             self._onData(data)
