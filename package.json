@@ -1,6 +1,6 @@
 {
   "name": "infobot-tinkoff-stt",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Node.JS library for Tinkoff VoiceKit Speech-to-Text with streaming recognition",
   "main": "index.js",
   "directories": {
