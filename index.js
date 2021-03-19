@@ -47,8 +47,6 @@ class InfobotTinkoffSTT {
             streaming_config.speech_context = streaming_config.speech_context || null;
             streaming_config.model = streaming_config.model || null;
 
-            console.log(streaming_config);
-
             interim_results_config.enable_interim_results = interim_results_config.enable_interim_results === undefined ? true : interim_results_config.enable_interim_results;
             interim_results_config.interval = interim_results_config.interval || 2;
 
