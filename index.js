@@ -42,12 +42,14 @@ class InfobotTinkoffSTT {
             streaming_config.encoding = streaming_config.encoding || InfobotTinkoffSTT.FORMAT_LINEAR_16;
             streaming_config.num_channels = streaming_config.num_channels || 1;
             streaming_config.max_alternatives = streaming_config.max_alternatives || 5;
-            streaming_config.profanity_filter = streaming_config.profanity_filter || false;
-            streaming_config.enable_automatic_punctuation = streaming_config.enable_automatic_punctuation || true;
+            streaming_config.profanity_filter = streaming_config.profanity_filter === undefined ? true : streaming_config.profanity_filter;
+            streaming_config.enable_automatic_punctuation = streaming_config.enable_automatic_punctuation === undefined ? true : streaming_config.enable_automatic_punctuation;
             streaming_config.speech_context = streaming_config.speech_context || null;
             streaming_config.model = streaming_config.model || null;
 
-            interim_results_config.enable_interim_results = interim_results_config.enable_interim_results || true;
+            console.log(streaming_config);
+
+            interim_results_config.enable_interim_results = interim_results_config.enable_interim_results === undefined ? true : interim_results_config.enable_interim_results;
             interim_results_config.interval = interim_results_config.interval || 2;
 
             resolve(new RS(self.apiKey, self.secretKey,
