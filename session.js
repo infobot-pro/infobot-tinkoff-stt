@@ -36,7 +36,6 @@ class RecognitionSession {
         });
 
         self._call.on('end', () => {
-            console.info(new Date(), 'end of session')
             this.isEnd = true;
         });
 
@@ -59,8 +58,6 @@ class RecognitionSession {
     writeChunk(chunk) {
         if (!this.isEnd) {
             this._call.write({audio_content: chunk});
-        } else {
-            console.info(new Date(),'try write after finish stream, chunk length', chunk.length);
         }
     }
 
