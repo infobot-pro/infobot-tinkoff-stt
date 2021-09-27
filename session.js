@@ -10,6 +10,7 @@ class RecognitionSession {
     constructor(apiKey, secretKey, streamingConfig) {
         const self = this;
         self.events = new EventEmitter;
+        self.isEnd = false;
 
         const packageDefinition = protoLoader.loadSync(
             PROTO_PATH,
@@ -33,6 +34,12 @@ class RecognitionSession {
         self._call.on('data', function (data) {
             self._onData(data)
         });
+
+        self._call.on('end', () => {
+            console.info(new Date(), 'end of session')
+            this.isEnd = true;
+        });
+
         self._call.on('error', function (data) {
             self._onError(data)
         });
@@ -50,10 +57,15 @@ class RecognitionSession {
     }
 
     writeChunk(chunk) {
-        this._call.write({audio_content: chunk});
+        if (!this.isEnd) {
+            this._call.write({audio_content: chunk});
+        } else {
+            console.info(new Date(),'try write after finish stream, chunk length', chunk.length);
+        }
     }
 
     finishStream() {
+        this.isEnd = true;
         this._call.end();
     }
 
