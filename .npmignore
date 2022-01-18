@@ -108,3 +108,5 @@ dist
 test/
 .idea/
 test.js
+
+package-lock.json

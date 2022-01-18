@@ -92,3 +92,4 @@ typings/
 test/
 test.js
 
+package-lock.json

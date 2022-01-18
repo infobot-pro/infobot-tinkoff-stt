@@ -1,7 +1,7 @@
 const auth = require('./auth');
 
 const EventEmitter = require('events').EventEmitter;
-const grpc = require('grpc');
+const grpc = require('@grpc/grpc-js');
 const protoLoader = require('@grpc/proto-loader');
 
 const PROTO_PATH = __dirname + '/stt.proto';
@@ -31,6 +31,10 @@ class RecognitionSession {
 
         self._call = client.StreamingRecognize();
 
+        self._call.on('metadata', function (metadata) {
+            self._onMetaData(metadata);
+        });
+
         self._call.on('data', function (data) {
             self._onData(data)
         });
@@ -45,6 +49,10 @@ class RecognitionSession {
 
 
         self._call.write(streamingConfig);
+    }
+
+    _onMetaData(data) {
+        this.events.emit('metadata', data);
     }
 
     _onData(data) {

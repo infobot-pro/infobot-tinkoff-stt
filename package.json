@@ -1,6 +1,6 @@
 {
   "name": "infobot-tinkoff-stt",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "Node.JS library for Tinkoff VoiceKit Speech-to-Text with streaming recognition",
   "main": "index.js",
   "directories": {
@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/infobot-pro/infobot-tinkoff-stt#readme",
   "dependencies": {
-    "grpc": "^1.24.6",
-    "@grpc/proto-loader": "^0.5.6"
+    "@grpc/grpc-js": "^1.5.1",
+    "@grpc/proto-loader": "^0.6.9"
   }
 }
