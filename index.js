@@ -46,6 +46,7 @@ class InfobotTinkoffSTT {
             streaming_config.enable_automatic_punctuation = streaming_config.enable_automatic_punctuation === undefined ? true : streaming_config.enable_automatic_punctuation;
             streaming_config.speech_context = streaming_config.speech_context || null;
             streaming_config.model = streaming_config.model || null;
+            streaming_config.vad_config = streaming_config.vad_config || null;
 
             interim_results_config.enable_interim_results = interim_results_config.enable_interim_results === undefined ? true : interim_results_config.enable_interim_results;
             interim_results_config.interval = interim_results_config.interval || 2;
